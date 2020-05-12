@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="safehome_ss.gui.GUI_SensorThingSceneController">
+   <children>
+      <JFXButton fx:id="sensor_Prev" contentDisplay="GRAPHIC_ONLY" onAction="#prevSensorThing" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="278.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <graphic>
+            <MaterialIconView glyphName="NAVIGATE_BEFORE" size="36" />
+         </graphic>
+      </JFXButton>
+      <AnchorPane fx:id="sensorthing_rootPane" layoutX="145.0" layoutY="86.0" prefHeight="457.0" prefWidth="682.0" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="145.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="86.0" />
+      <JFXButton contentDisplay="GRAPHIC_ONLY" onAction="#nextSensorThing" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="278.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <graphic>
+            <MaterialIconView glyphName="NAVIGATE_NEXT" size="36" />
+         </graphic>
+      </JFXButton>
+   </children>
+</AnchorPane>

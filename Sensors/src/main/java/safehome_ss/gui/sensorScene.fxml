@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="safehome_ss.gui.GUI_SensorSceneController">
+   <children>
+      <JFXButton fx:id="sensor_Prev" contentDisplay="GRAPHIC_ONLY" onAction="#prevSensor" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="278.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <graphic>
+            <MaterialIconView glyphName="NAVIGATE_BEFORE" size="36" />
+         </graphic>
+      </JFXButton>
+      <AnchorPane fx:id="sensor_rootPane" layoutX="175.0" layoutY="68.0" prefHeight="485.0" prefWidth="560.0" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="40.0" />
+      <JFXButton contentDisplay="GRAPHIC_ONLY" onAction="#nextSensor" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="278.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <graphic>
+            <MaterialIconView glyphName="NAVIGATE_NEXT" size="36" />
+         </graphic>
+      </JFXButton>
+      <HBox layoutX="175.0" layoutY="519.0" prefHeight="38.0" prefWidth="485.0" spacing="25.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="185.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <children>
+            <JFXButton fx:id="sensorTemp_btn" contentDisplay="GRAPHIC_ONLY" onAction="#showSensorTemp">
+               <HBox.margin>
+                  <Insets left="35.0" />
+               </HBox.margin>
+            </JFXButton>
+            <JFXButton fx:id="sensorHumd_btn" contentDisplay="GRAPHIC_ONLY" onAction="#showSensorHumd" />
+            <JFXButton fx:id="sensorAirq_btn" contentDisplay="GRAPHIC_ONLY" onAction="#showSensorAirq" />
+            <JFXButton fx:id="sensorSmok_btn" contentDisplay="GRAPHIC_ONLY" onAction="#showSensorSmok" />
+            <JFXButton fx:id="sensorMotn_btn" contentDisplay="GRAPHIC_ONLY" onAction="#showSensorMotn" />
+            <JFXButton fx:id="sensorFlod_btn" contentDisplay="GRAPHIC_ONLY" onAction="#showSensorFlod" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

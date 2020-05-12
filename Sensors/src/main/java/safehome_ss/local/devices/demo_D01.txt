@@ -1,0 +1,44 @@
+***** CONFIG FILE FOR DEVICE (aka SENSORTHING) demo_D00 *****
+
+***** it contains data such as this SensorThing name, model, unique identifier, status, sensors. *****
+***** parameters follow the patterns [paramID] "value" *****
+***** for each supported sensor (e.g. temperature), this file contains data about said sensors, like their id, names, etc, and their measurements, such as measuredData (e.g. 20 °C), time of the last measurement, etc ***** 
+***** measured data are currently unused / ignored, but inserted for future work purposes where the data could be made permanent *****
+***** parameters for each supported sensor follow this pattern:  {paramID} "value" ***** 
+
+[sensorThingUID] "demo_D01"
+[sensorThingName] "Demo Device 01"
+[sensorThingModel] "THF"
+[sensorThingPlacedIn] "Bathroom"
+
+***** sensor data starts here ***** 
+
+(sensor) "TEMPERATURE"
+{sensorThingName} "Demo Device 01"
+{sensorUID} "TEMP04"
+{sensorName} "Demo Temperature Sensor 01"
+{sensorType} "Temperature"
+{sensorStatus} "OFFLINE"
+{refreshTime} "10"
+{measuredData} "N/A"
+{lastMeasurementTime} "N/A"
+
+(sensor) "HUMIDITY"
+{sensorThingName} "Demo Device 01"
+{sensorUID} "HUMD05"
+{sensorName} "Demo Humidity Sensor 02"
+{sensorType} "Humidity"
+{sensorStatus} "OFFLINE"
+{refreshTime} "10"
+{measuredData} "N/A"
+{lastMeasurementTime} "N/A"
+
+(sensor) "FLOOD"
+{sensorThingName} "Demo Device 01"
+{sensorUID} "FLOD08"
+{sensorName} "Demo Flooding Sensor 08"
+{sensorType} "Water leakage detector"
+{sensorStatus} "OFFLINE"
+{refreshTime} "10"
+{measuredData} "N/A"
+{lastMeasurementTime} "N/A"

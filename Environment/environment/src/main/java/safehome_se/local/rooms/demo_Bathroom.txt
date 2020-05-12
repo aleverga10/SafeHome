@@ -1,0 +1,30 @@
+﻿***** CONFIG FILE FOR ROOM demo_Bathroom *****
+
+***** it contains data such as name, last sensor id who made a measure request to this room, with timestamp. It also contains info about which sensors are placed here. *****
+***** parameters follow the patterns [paramID] "value" *****
+***** for each data (e.g. temperature), this file contains info about those data, like their current value, if it is currently being variated, at which speed, and if it is, what is the desired target value for the variation. ***** 
+
+[roomName] "demo_Bathroom"
+[lastRequest] ""
+[lastRequestTime] ""
+
+***** info about sensor ids that can measure this room's data (note: not devices, but sensors! like a Temperature sensor whose id is TEMP_01 and is installed inside Demo Device 01) ***** 
+
+[sensorUID_PlacedHere_0] "TEMP04"
+[sensorUID_PlacedHere_1] "HUMD05"
+[sensorUID_PlacedHere_2] "FLOD08"
+
+***** data start here *****
+
+[dataRow_0] "TEMPERATURE"
+[dataCell_0] "20.0000 °C"
+[dataRow_1] "HUMIDITY"
+[dataCell_1] "RH: 40.0000 %"
+[dataRow_2] "AIR_QUALITY"
+[dataCell_2] "CO2: 3500.0 ppm  - CO: 7.0 ppm - PM2.5: 15.0 ppm - TVOC: 300.0 ppb"
+[dataRow_3] "SMOKE"
+[dataCell_3] "0.2 % obs/m"
+[dataRow_4] "MOTION"
+[dataCell_4] "Movimento 0.0"
+[dataRow_5] "FLOOD"
+[dataCell_5] "2.0 V"

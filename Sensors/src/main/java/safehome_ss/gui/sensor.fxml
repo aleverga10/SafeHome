@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="442.0" prefWidth="491.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="safehome_ss.gui.GUI_SensorController">
+   <children>
+      <Pane style="-fx-background-color: #f5f5f5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="sensorTypeImage" fitHeight="94.0" fitWidth="84.0" layoutX="36.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/temperature.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="sensorThingName" alignment="CENTER" contentDisplay="CENTER" layoutX="135.0" layoutY="32.0" prefHeight="36.0" prefWidth="294.0" style="-fx-background-color: #ff6600; -fx-background-radius: 4;" text="SENSOR THING NAME" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <VBox alignment="CENTER" layoutX="135.0" layoutY="69.0" prefHeight="68.0" prefWidth="294.0" style="-fx-background-color: #f5f5f5;">
+               <children>
+                  <HBox prefWidth="302.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="117.0" text="NAME" textFill="#ff6600">
+                           <font>
+                              <Font name="Calibri" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="sensorName" prefHeight="17.0" prefWidth="210.0" text="TEMP_003" textFill="BLACK">
+                           <font>
+                              <Font name="Calibri" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="302.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="96.0" text="TYPE" textFill="#ff6600">
+                           <font>
+                              <Font name="Calibri" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="sensorType" prefHeight="17.0" prefWidth="186.0" text="TEMPERATURE" textFill="BLACK">
+                           <font>
+                              <Font name="Calibri" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="20.0" layoutY="33.0" prefWidth="302.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="96.0" text="STATUS" textFill="#ff6600">
+                           <font>
+                              <Font name="Calibri" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="sensorStatus" prefHeight="17.0" prefWidth="187.0" text="ATTIVO" textFill="BLACK">
+                           <font>
+                              <Font name="Calibri" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="refreshTimeBox" prefWidth="302.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="94.0" text="REFRESH TIME" textFill="#ff6600">
+                           <font>
+                              <Font name="Calibri" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="refreshTime" prefHeight="17.0" prefWidth="40.0" text="10" textFill="BLACK">
+                           <font>
+                              <Font name="Calibri" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="sensorStatus11" prefHeight="17.0" prefWidth="60.0" text="SECONDS" textFill="BLACK">
+                           <font>
+                              <Font name="Calibri" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="10.0" top="5.0" />
+               </padding>
+            </VBox>
+            <Label fx:id="measuredData" alignment="BASELINE_CENTER" contentDisplay="TEXT_ONLY" layoutX="52.0" layoutY="221.0" prefHeight="128.0" prefWidth="388.0" style="-fx-border-color: #ff6600; -fx-border-width: 2; -fx-border-radius: 10; -fx-background-color: #ffcc88;" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Yu Gothic UI Light" size="48.0" />
+               </font>
+            </Label>
+            <VBox fx:id="airqualityBox" layoutX="52.0" layoutY="172.0" style="-fx-border-color: #ff6600; -fx-border-width: 2; -fx-border-radius: 10; -fx-background-color: #ffcc88;" visible="false">
+               <children>
+                  <Label fx:id="measuredCO2" alignment="BASELINE_CENTER" contentDisplay="TEXT_ONLY" prefWidth="388.0" text="CO2: 500 ppm">
+                     <font>
+                        <Font name="Yu Gothic UI Light" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="measuredCO" alignment="BASELINE_CENTER" contentDisplay="TEXT_ONLY" prefWidth="388.0" text="CO: 5000 ppm">
+                     <font>
+                        <Font name="Yu Gothic UI Light" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="measuredPM25" alignment="BASELINE_CENTER" contentDisplay="TEXT_ONLY" layoutX="10.0" layoutY="10.0" prefWidth="388.0" text="CO2: 500 ppm">
+                     <font>
+                        <Font name="Yu Gothic UI Light" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="measuredTVOC" alignment="BASELINE_CENTER" contentDisplay="TEXT_ONLY" layoutX="10.0" layoutY="40.0" prefWidth="388.0" text="TVOC: 50000 ppm">
+                     <font>
+                        <Font name="Yu Gothic UI Light" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

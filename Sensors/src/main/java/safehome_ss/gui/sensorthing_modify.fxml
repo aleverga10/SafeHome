@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.weathericons.WeatherIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:controller="safehome_ss.gui.GUI_AddController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="544.0" prefWidth="714.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutX="68.0" layoutY="60.0" prefHeight="281.0" prefWidth="164.0" style="-fx-border-color: #c926c7; -fx-border-width: 5; -fx-border-radius: 10;">
+         <children>
+            <ImageView blendMode="MULTIPLY" fitHeight="338.0" fitWidth="148.0" layoutX="8.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../../HTB1TBMQo5CYBuNkHFCcq6AHtVXau.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <VBox layoutX="264.0" layoutY="60.0" prefHeight="127.0" prefWidth="346.0">
+         <children>
+            <JFXTextField alignment="CENTER" focusColor="WHITE" prefHeight="34.0" prefWidth="276.0" style="-fx-background-color: #c926c7; selected: false;" text="DEVICE NAME" unFocusColor="WHITE">
+               <font>
+                  <Font name="Candara" size="18.0" />
+               </font>
+            </JFXTextField>
+            <HBox prefWidth="302.0" spacing="20.0">
+               <children>
+                  <Label prefHeight="24.0" prefWidth="95.0" text="MODEL" textFill="#d0a3d0" />
+                  <JFXComboBox editable="true" focusColor="#c926c7" prefHeight="25.0" prefWidth="210.0" promptText="CHOOSE" unFocusColor="#d0a3d0" visibleRowCount="3">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXComboBox>
+               </children>
+               <padding>
+                  <Insets bottom="2.0" left="16.0" right="16.0" top="2.0" />
+               </padding>
+            </HBox>
+            <HBox prefWidth="302.0" spacing="20.0">
+               <children>
+                  <Label prefHeight="24.0" prefWidth="95.0" text="DEVICE ID" textFill="#d0a3d0" />
+                  <JFXTextField alignment="BASELINE_LEFT" focusColor="#c926c7" labelFloat="true" prefHeight="25.0" prefWidth="209.0" text="003" unFocusColor="#d0a3d0" />
+               </children>
+               <padding>
+                  <Insets bottom="2.0" left="16.0" right="16.0" top="2.0" />
+               </padding>
+            </HBox>
+            <HBox prefWidth="302.0" spacing="20.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="95.0" text="PLACED IN ROOM " textFill="#d0a3d0" />
+                  <JFXComboBox focusColor="#c926c7" prefHeight="25.0" prefWidth="214.0" promptText="SCEGLI" unFocusColor="#d0a3d0" visibleRowCount="3">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXComboBox>
+               </children>
+               <padding>
+                  <Insets bottom="2.0" left="16.0" right="16.0" top="2.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="309.0" layoutY="201.0" prefHeight="142.0" prefWidth="256.0">
+         <children>
+            <Label prefHeight="0.0" prefWidth="204.0" text="Sensori presenti " textFill="#c926c7">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="47.0" prefWidth="220.0" spacing="30.0">
+               <children>
+                  <WeatherIconView fill="#69d75a" glyphName="RAIN" size="32.0" wrappingWidth="34.625" />
+                  <WeatherIconView fill="#4abbc3" glyphName="RAIN" size="32.0" wrappingWidth="34.625" />
+                  <WeatherIconView fill="#c743e4" glyphName="RAIN" size="32.0" wrappingWidth="34.625" />
+               </children>
+               <padding>
+                  <Insets left="35.0" right="35.0" top="2.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="15.0" prefWidth="231.0" spacing="18.0">
+               <children>
+                  <Label text="Temperature">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label text="Humidity">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="15.0" prefWidth="77.0" text="Air quality">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="22.0" right="22.0" />
+               </padding>
+            </HBox>
+            <HBox spacing="25.0">
+               <children>
+                  <WeatherIconView fill="#69d75a" glyphName="RAIN" size="32.0" wrappingWidth="34.625" />
+                  <WeatherIconView fill="#4abbc3" glyphName="RAIN" opacity="0.75" size="32.0" wrappingWidth="34.625" />
+                  <WeatherIconView fill="#c743e4" glyphName="RAIN" opacity="0.5" size="32.0" wrappingWidth="34.625" />
+                  <WeatherIconView fill="#c743e4" glyphName="RAIN" opacity="0.5" size="32.0" wrappingWidth="34.625" />
+               </children>
+               <padding>
+                  <Insets right="9.0" top="2.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox spacing="9.0">
+               <children>
+                  <Label prefHeight="15.0" prefWidth="44.0" text="Smoke detector">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label prefHeight="15.0" prefWidth="65.0" text="Motion detector">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="15.0" prefWidth="70.0" text="Flood detector">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+      <JFXButton layoutX="86.0" layoutY="410.0" prefHeight="34.0" prefWidth="129.0" style="-fx-background-color: d0a3d0;" text="RESTART" textFill="WHITE" />
+      <JFXButton layoutX="86.0" layoutY="359.0" prefHeight="34.0" prefWidth="129.0" style="-fx-background-color: d0a3d0;" text="DELETE" textFill="WHITE" />
+      <JFXButton layoutX="86.0" layoutY="459.0" prefHeight="34.0" prefWidth="129.0" style="-fx-background-color: #c926c7;" text="SAVE CHANGES" textFill="WHITE" />
+   </children>
+</AnchorPane>

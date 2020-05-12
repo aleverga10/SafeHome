@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="179.0" style="-fx-background-color: #ff6600;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="safehome_ss.gui.GUI_MenuController">
+   <children>
+      <MaterialDesignIconView fill="WHITE" glyphName="SECURITY_HOME" layoutX="54.0" layoutY="86.0" size="72" />
+      <Label layoutX="40.0" layoutY="99.0" text="SafeHome" textFill="WHITE">
+         <font>
+            <Font name="Candara Bold" size="24.0" />
+         </font>
+      </Label>
+      <VBox layoutX="14.0" layoutY="222.0" spacing="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+<!--            <JFXButton fx:id="mainMenu_Home" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#load_homeScene" prefHeight="32.0" prefWidth="179.0" text="Home" textFill="WHITE">
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="HOME" size="20" textAlignment="JUSTIFY" />
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="20.0" right="35.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+-->
+            <JFXButton fx:id="mainMenu_SensorThings" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#load_sensorThingsScene" prefHeight="32.0" prefWidth="179.0" text="Devices" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="THERMOMETER" size="20" textAlignment="JUSTIFY" />
+               </graphic>
+               <padding>
+                  <Insets left="20.0" right="35.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="mainMenu_Scenario" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#load_scenariosScene" prefHeight="32.0" prefWidth="179.0" text="Test Scenario" textFill="WHITE">
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="TEST_TUBE" size="20" textAlignment="JUSTIFY" />
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="20.0" right="35.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="mainMenu_Log" alignment="BASELINE_LEFT" graphicTextGap="20.0" onAction="#load_logScene" prefHeight="32.0" prefWidth="179.0" text="Log" textAlignment="CENTER" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="FORMAT_LIST_BULLETED" size="20" textAlignment="JUSTIFY" />
+               </graphic>
+               <padding>
+                  <Insets left="20.0" right="35.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </VBox>
+      <Pane layoutY="423.0" prefHeight="177.0" prefWidth="179.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="423.0">
+         <children>
+            <ImageView fitHeight="72.0" fitWidth="107.0" layoutX="40.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/politecnico-di-milano-new-seeklogo.com.png" />
+               </image></ImageView>
+            <VBox layoutX="32.0" layoutY="123.0" prefHeight="40.0" prefWidth="114.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="20.0" prefWidth="114.0" text="Alessandro Verga" textFill="WHITE">
+                     <font>
+                        <Font name="Candara" size="11.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="20.0" prefWidth="114.0" text="A.A. 2018 / 2019" textFill="WHITE">
+                     <font>
+                        <Font size="9.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

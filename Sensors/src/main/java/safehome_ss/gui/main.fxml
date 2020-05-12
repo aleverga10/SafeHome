@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="safehome_ss.gui.GUI_MainController">
+   <children>
+      <AnchorPane fx:id="rootPane" prefWidth="758.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="179.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+<!--      <JFXHamburger fx:id="mainMenu_Hamburger" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="45.0" />
+-->
+   <JFXDrawer fx:id="mainMenu" defaultDrawerSize="179.0" layoutX="1.0" prefHeight="600.0" prefWidth="179.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   </children>
+   
+</AnchorPane>

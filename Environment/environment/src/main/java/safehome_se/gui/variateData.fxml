@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="safehome_se.gui.GUI_VariateDataController">
+   <children>
+      <HBox layoutX="199.0" layoutY="107.0" prefHeight="96.0" prefWidth="469.0">
+         <children>
+            <VBox prefHeight="96.0" prefWidth="470.0">
+               <children>
+                  <Label fx:id="roomName" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" lineSpacing="1.0" prefHeight="35.0" prefWidth="370.0" style="-fx-background-color: #ff6600; -fx-background-radius: 4;" text="ROOM NAME" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+                     <font>
+                        <Font name="Candara" size="18.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="CENTER" prefHeight="60.0" prefWidth="409.0">
+                     <children>
+                        <HBox prefWidth="302.0">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="110.0" text="VARIATING" textFill="#ff6600">
+                                 <font>
+                                    <Font name="Calibri" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="dataType" prefHeight="17.0" prefWidth="190.0" text="Temperatura">
+                                 <font>
+                                    <Font name="Calibri" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefWidth="302.0">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="110.0" text="CURRENT VALUE" textFill="#ff6600">
+                                 <font>
+                                    <Font name="Calibri" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="currentValue" prefHeight="17.0" prefWidth="351.0" text="CO2: 500 ppm  - CO: 3 ppm - PM2.5: 5 ppm - TVOC: 30 ppb">
+                                 <font>
+                                    <Font name="Calibri" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="10.0" top="5.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <Pane layoutX="185.0" layoutY="217.0" prefHeight="340.0" prefWidth="517.0" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="185.0" AnchorPane.rightAnchor="143.0" AnchorPane.topAnchor="217.0">
+         <children>
+            <JFXSlider fx:id="variationSlider" blockIncrement="1.0" indicatorPosition="RIGHT" layoutX="58.0" layoutY="86.0" majorTickUnit="1.0" max="3.0" min="-3.0" minorTickCount="0" prefHeight="43.0" prefWidth="313.0" showTickMarks="true" snapToTicks="true" value="0.0" />
+            <VBox layoutX="58.0" layoutY="129.0" prefHeight="96.0" prefWidth="313.0" spacing="30.0">
+               <children>
+                  <Label fx:id="variationValue" accessibleText="NONE" alignment="CENTER" prefHeight="24.0" prefWidth="313.0" text="NO VARIATIONS" />
+                  <HBox spacing="30.0">
+                     <children>
+                        <JFXTextField fx:id="targetValue" focusColor="#ff6600" labelFloat="true" prefHeight="25.0" prefWidth="144.0" promptText="Target value" />
+                        <JFXComboBox fx:id="parameter" accessibleText="" disable="true" focusColor="#ff6600" labelFloat="true" onAction="#paramChanged" prefHeight="25.0" prefWidth="151.0" promptText="Air Quality quantity" />
+                        <JFXTextField fx:id="durationValue" focusColor="#ff6600" labelFloat="true" prefHeight="25.0" prefWidth="144.0" promptText="Duration (seconds)" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Label layoutX="59.0" prefHeight="60.0" prefWidth="311.0" text="Choose the desired variation SPEED between the given options. Variation happens in percentage on the current value. Specifically:      ±1.25 % for INCREASE and DECREASE,      ± 1.5% for FAST,                    ± 2.25 % for VERY FAST variations." wrapText="true">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="startButton" layoutX="55.0" layoutY="260.0" onAction="#startVariation" prefHeight="35.0" prefWidth="229.0" ripplerFill="#ffcc88" style="-fx-background-color: #ff6600;" text="START VARIATING DATA" textFill="#fff">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <FontAwesomeIconView fx:id="errorIcon" fill="#c33434" glyphName="REMOVE" layoutX="303.0" layoutY="285.0" opacity="0.5" size="24" wrappingWidth="25.0" />
+            <FontAwesomeIconView fx:id="okIcon" fill="#3fb929" glyphName="CHECK" layoutX="349.0" layoutY="285.0" opacity="0.5" size="24" wrappingWidth="25.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

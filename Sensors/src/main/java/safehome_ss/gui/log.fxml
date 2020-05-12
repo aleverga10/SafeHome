@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="safehome_ss.gui.GUI_LogController">
+   <children>
+      <Label alignment="CENTER" layoutX="311.0" layoutY="66.0" prefHeight="60.0" prefWidth="223.0" text="Log eventi">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <JFXTextArea fx:id="logTextArea" editable="false" layoutX="108.0" layoutY="154.0" prefHeight="392.0" prefWidth="630.0" style="-fx-background-color: #fff;">
+         <font>
+            <Font size="9.0" />
+         </font></JFXTextArea>
+   </children>
+</AnchorPane>

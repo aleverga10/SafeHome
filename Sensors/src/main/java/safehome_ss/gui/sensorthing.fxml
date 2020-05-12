@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="388.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="safehome_ss.gui.GUI_SensorThingController">
+   <children>
+      <Pane layoutX="53.0" layoutY="48.0" prefHeight="312.0" prefWidth="186.0" style="-fx-border-color: #ff6600; -fx-border-width: 5; -fx-border-radius: 10;">
+         <children>
+            <ImageView fx:id="sensorThingImage" blendMode="MULTIPLY" fitHeight="132.0" fitWidth="133.0" layoutX="27.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/camera.png" />
+               </image>
+            </ImageView>
+            <JFXToggleButton fx:id="sensorThingPower_Tbtn" contentDisplay="RIGHT" layoutX="18.0" layoutY="7.0" onAction="#power" prefHeight="38.0" prefWidth="151.0" selected="true" text="POWER" toggleColor="#ff6600" toggleLineColor="#ffcc88" />
+         </children>
+      </Pane>
+      <HBox layoutX="273.0" layoutY="48.0" prefHeight="96.0" prefWidth="242.0">
+         <children>
+            <VBox prefHeight="109.0" prefWidth="242.0">
+               <children>
+                  <Label fx:id="sensorThingName" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" lineSpacing="1.0" prefHeight="41.0" prefWidth="253.0" style="-fx-background-color: #ff6600; -fx-background-radius: 4;" text="SENSOR THING NAME" textFill="WHITE" textOverrun="CLIP" wrapText="true">
+                     <font>
+                        <Font name="Candara" size="18.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="CENTER" prefHeight="60.0" prefWidth="253.0">
+                     <children>
+                        <HBox prefWidth="302.0">
+                           <children>
+                              <Label prefWidth="64.0" text="MODEL" textFill="#ff6600">
+                                 <font>
+                                    <Font name="Calibri" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="sensorThingModel" prefWidth="89.0" text="THASM">
+                                 <font>
+                                    <Font name="Calibri" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefWidth="302.0">
+                           <children>
+                              <Label prefWidth="64.0" text="UID" textFill="#ff6600">
+                                 <font>
+                                    <Font name="Calibri" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="sensorThingUID" prefWidth="89.0" text="003">
+                                 <font>
+                                    <Font name="Calibri" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefWidth="302.0">
+                           <children>
+                              <Label prefWidth="64.0" text="PLACED IN" textFill="#ff6600">
+                                 <font>
+                                    <Font name="Calibri" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="sensorThingPlacedIn" prefHeight="17.0" prefWidth="168.0" text="Camera da Letto">
+                                 <font>
+                                    <Font name="Calibri" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="10.0" top="5.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <VBox layoutX="273.0" layoutY="182.0" prefHeight="141.0" prefWidth="256.0" spacing="5.0">
+         <children>
+            <Label prefHeight="17.0" prefWidth="256.0" text="Sensors installed in this Device" textFill="#ff6600">
+               <font>
+                  <Font size="10.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" right="10.0" top="2.0" />
+               </padding>
+            </Label>
+            <HBox prefHeight="47.0" prefWidth="220.0" spacing="25.0">
+               <children>
+                  <JFXButton fx:id="show_TempSensor" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="32.0" maxWidth="32.0" onAction="#show_TemperatureData">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="show_HumdSensor" contentDisplay="GRAPHIC_ONLY" maxHeight="32.0" maxWidth="32.0" onAction="#show_HumidityData">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="show_AirqSensor" contentDisplay="GRAPHIC_ONLY" maxHeight="32.0" maxWidth="32.0" onAction="#show_AirQualityData">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+               <padding>
+                  <Insets left="30.0" right="30.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="15.0" prefWidth="231.0" spacing="25.0">
+               <children>
+                  <Label fx:id="label_TempSensor" text="Temperature">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="label_HumdSensor" text="Humidity">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="label_AirqSensor" text="Air quality">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                     <padding>
+                        <Insets left="7.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="22.0" right="22.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="46.0" prefWidth="256.0" spacing="25.0">
+               <children>
+                  <JFXButton fx:id="show_SmokSensor" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="32.0" maxWidth="32.0" onAction="#show_SmokeData">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="show_MotnSensor" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="32.0" maxWidth="32.0" onAction="#show_MotionData">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="show_FlodSensor" contentDisplay="GRAPHIC_ONLY" disable="true" graphicTextGap="0.0" maxHeight="32.0" maxWidth="32.0" onAction="#show_FloodData">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+               </children>
+               <padding>
+                  <Insets left="30.0" right="30.0" top="2.0" />
+               </padding>
+            </HBox>
+            <HBox spacing="42.0">
+               <children>
+                  <Label fx:id="label_SmokSensor" text="Smoke">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="label_MotnSensor" text="Motion">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="label_FlodSensor" text="Water leak">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="15.0" right="15.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

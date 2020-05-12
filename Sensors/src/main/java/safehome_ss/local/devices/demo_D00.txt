@@ -1,0 +1,63 @@
+﻿***** CONFIG FILE FOR DEVICE (aka SENSORTHING) demo_D00 *****
+
+***** it contains data such as this SensorThing name, model, unique identifier, status, sensors. *****
+***** parameters follow the patterns [paramID] "value" *****
+***** for each supported sensor (e.g. temperature), this file contains data about said sensors, like their id, names, etc, and their measurements, such as measuredData (e.g. 20 °C), time of the last measurement, etc ***** 
+***** measured data are currently unused / ignored, but inserted for future work purposes where the data could be made permanent *****
+***** parameters for each supported sensor follow this pattern:  {paramID} "value" ***** 
+
+[sensorThingUID] "demo_D00"
+[sensorThingName] "Demo Device 00"
+[sensorThingModel] "THASM"
+[sensorThingPlacedIn] "Living Room"
+
+***** sensor data starts here ***** 
+
+(sensor) "TEMPERATURE"
+{sensorThingName} "Demo Device 00"
+{sensorUID} "TEMP01"
+{sensorName} "Demo Temperature Sensor 01"
+{sensorType} "Temperature"
+{sensorStatus} "OFFLINE"
+{refreshTime} "10"
+{measuredData} "N/A"
+{lastMeasurementTime} "N/A"
+
+(sensor) "HUMIDITY"
+{sensorThingName} "Demo Device 00"
+{sensorUID} "HUMD02"
+{sensorName} "Demo Humidity Sensor 02"
+{sensorType} "Humidity"
+{sensorStatus} "OFFLINE"
+{refreshTime} "10"
+{measuredData} "N/A"
+{lastMeasurementTime} "N/A"
+
+(sensor) "AIR_QUALITY"
+{sensorThingName} "Demo Device 00"
+{sensorUID} "AIRQ03"
+{sensorName} "Demo AirQ Sensor 03"
+{sensorType} "Air Quality"
+{sensorStatus} "OFFLINE"
+{refreshTime} "10"
+{measuredData} "N/A"
+{lastMeasurementTime} "N/A"
+
+(sensor) "SMOKE"
+{sensorThingName} "Demo Device 00"
+{sensorUID} "SMOK06"
+{sensorName} "Demo Smoke detector 06"
+{sensorType} "Smoke detector"
+{sensorStatus} "OFFLINE"
+{refreshTime} "10"
+{measuredData} "N/A"
+{lastMeasurementTime} "unknown"
+
+(sensor) "MOTION"
+{sensorThingName} "Demo Device 00"
+{sensorUID} "MOTN07"
+{sensorName} "Demo Motion detector 07"
+{sensorType} "Motion detector"
+{sensorStatus} "OFFLINE"
+{measuredData} "N/A"
+{lastMeasurementTime} "unknown"

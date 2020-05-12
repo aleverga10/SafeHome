@@ -1,0 +1,33 @@
+﻿***** CONFIG FILE FOR ROOM demo_LivingRoom *****
+
+***** it contains data such as  *****
+***** parameters follow the patterns [paramID] "value" *****
+***** for each supported sensor (e.g. temperature), this file contains data about said sensors, like their id, names, etc, and their measurements, such as measuredData (e.g. 20 °C), time of the last measurement, etc ***** 
+***** parameters for each supported sensor follow this pattern:  {paramID} "value" ***** 
+
+[roomName] "demo_LivingRoom"
+[lastRequest] ""
+[lastRequestTime] ""
+
+***** info about sensor ids that can measure this room's data (note: not devices, but sensors! like a Temperature sensor whose id is TEMP_01 and is installed inside Demo Device 01) ***** 
+
+[sensorUID_PlacedHere_0] "TEMP01"
+[sensorUID_PlacedHere_1] "HUMD02"
+[sensorUID_PlacedHere_2] "AIRQ03"
+[sensorUID_PlacedHere_3] "SMOK06"
+[sensorUID_PlacedHere_4] "MOTN07"
+
+***** data start here ***** 
+
+[dataRow_0] "TEMPERATURE"
+[dataCell_0] "20.0000 °C"
+[dataRow_1] "HUMIDITY"
+[dataCell_1] "RH: 40.0000 %"
+[dataRow_2] "AIR_QUALITY"
+[dataCell_2] "CO2: 3500.0 ppm  - CO: 7.0 ppm - PM2.5: 15.0 ppm - TVOC: 300.0 ppb"
+[dataRow_3] "SMOKE"
+[dataCell_3] "0.2 % obs/m"
+[dataRow_4] "MOTION"
+[dataCell_4] "Movimento 0.0"
+[dataRow_5] "FLOOD"
+[dataCell_5] "2.0 V"
