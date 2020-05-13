@@ -1,0 +1,2 @@
+Thing safehome_se:model_thasm:THASM00 "Sensor THASM00" @ "Living Room" []
+Thing safehome_se:model_thf:THF01 "Sensor THF01" @ "Bathroom" []

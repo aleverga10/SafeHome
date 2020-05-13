@@ -1,0 +1,417 @@
+import java.net.URLEncoder
+
+// **** ALARM VALUES ****
+
+// when the alarm is triggered, it will be in "triggered" state for [RESET_TIME]
+// after [RESET_TIME] has elapsed, it will be resetted to ""triggerable" state again
+var int RESET_TIME = 10 // seconds
+
+// this means, if another alarm would have sound in the meantime, it will be ignored
+// because it will not change the state to "triggerable" (as it is already) and will not reset the timer
+// however, from the sitemap the user can still acknowledge something is wrong (ie. by checking all the values) 
+
+var Boolean isAlarmActive=false 
+var String alarmMessage_base="Call from Open HAB: alarm. "
+var String alarmMessage
+
+
+// **** ALARM THRESHOLD VALUES ****
+
+// a detected value outside this ranges will trigger the alarm
+var int threshold_temperature_min = 12 
+var int threshold_temperature_max = 35
+
+var int threshold_humidity_min = 30 
+var int threshold_humidity_max = 70
+
+var int threshold_airqualityco2_max = 7000 
+var int threshold_airqualityco_max = 35 
+var int threshold_airqualitypm25_max = 55 
+var int threshold_airqualitytvoc_max = 3000
+
+var String threshold_motion = "Internal sensor value"
+var String threshold_smoke = "Internal sensor value"
+var String threshold_flood = "Internal sensor value"
+
+// **** TESTING SCENARIOS ****
+var int totalMeasurements = 0
+var int alarmTriggers_count = 0
+
+// scenario strings to detect which we're testing
+var String Scenario_SensorFailure = "SENSOR_FAILURE"
+var String Scenario_MeasurementError = "MEASUREMENT_ERROR"
+var String Scenario_AlarmFailure = "ALARM_FAILURE" 
+var String Scenario_OpenHABDelay = "OPENHAB_DELAY"
+ 
+
+
+var Boolean isScenarioActive = false
+var float ALARMFAILURE_PROBABILITY = 0f // 1% is the absolute minimum based on how the random(n) function works here in Xtend
+var float ALARMFAILURE_CAUSEDBYSYSTEM_PROBABILITY = 0.34f // 34 % of the failure being caused by openhab, safehome or "callmebot" service
+// that means, 66% of failures are caused by other reasons (e.g. user has phone turned off, whatever...)
+var int alarmFailure_count = 0
+var int alarmFailure_bySystem_count = 0
+
+var String log = "LOG: "
+// **** RULES START HERE ****
+
+rule "init"
+    when 
+        System started
+    then
+        // alarm init
+        isAlarmActive = false
+        Alarm_Activator.postUpdate(OFF)
+        Alarm_Triggered.postUpdate(CLOSED)
+        alarmMessage = alarmMessage_base
+        Alarm_Triggered_Reason.postUpdate("")
+        //Alarm_Triggered_Time.postUpdate( ??? )
+
+        // thresholds values init
+        Threshold_Temp_Min.postUpdate(threshold_temperature_min)
+        Threshold_Temp_Max.postUpdate(threshold_temperature_max)
+        Threshold_Humd_Min.postUpdate(threshold_humidity_min)
+        Threshold_Humd_Max.postUpdate(threshold_humidity_max)
+        Threshold_Airq_CO2_Max.postUpdate(threshold_airqualityco2_max)
+        Threshold_Airq_CO_Max.postUpdate(threshold_airqualityco_max)
+        Threshold_Airq_PM25_Max.postUpdate(threshold_airqualitypm25_max)
+        Threshold_Airq_TVOC_Max.postUpdate(threshold_airqualitytvoc_max)
+        Threshold_Motn.postUpdate(threshold_motion)
+        Threshold_Smok.postUpdate(threshold_smoke)
+        Threshold_Flod.postUpdate(threshold_flood)
+
+        // scenarios values init
+        totalMeasurements = 0
+        TotalMeasurements.postUpdate(0)
+        alarmTriggers_count = 0
+        Alarm_Triggers_count.postUpdate(0)
+
+        // set all armable / disarmable sensors to default value
+        ArmDisarm.members.forEach(i|i.postUpdate(ON))
+
+        alarmFailure_count = 0
+        AlarmFailures_count.postUpdate(0)
+        alarmFailure_bySystem_count = 0
+        AlarmFailures_CausedBySystem_count.postUpdate(0)
+        
+        AlarmLog.postUpdate(log)
+
+        isScenarioActive = false
+
+end
+
+rule "activate alarm"
+    when 
+        Item Alarm_Activator changed
+    
+    then
+        if (Alarm_Activator.state == ON) 
+            isAlarmActive=true 
+        else if (Alarm_Activator.state == OFF) 
+        {    
+            isAlarmActive=false
+            //also resets some fields
+            Scenario.postUpdate("NONE")
+
+            totalMeasurements = 0
+            TotalMeasurements.postUpdate(0)
+            alarmTriggers_count = 0
+            Alarm_Triggers_count.postUpdate(0)
+
+            alarmFailure_count = 0
+            AlarmFailures_count.postUpdate(0)
+            alarmFailure_bySystem_count = 0
+            AlarmFailures_CausedBySystem_count.postUpdate(0)
+
+            log = "LOG: "
+            AlarmLog.postUpdate(log)
+
+            isScenarioActive = false
+        }
+
+end
+
+rule "alarm call"
+
+    when 
+        Item Alarm_Triggered changed to OPEN
+
+    then
+        if (isAlarmActive == true)
+        {
+            // TESTING SCENARIO "ALARM FAILURE" is checked here
+            if (isScenarioActive)
+            {
+                /*
+                // basically, there's a small probability the alarm call will fail
+                // we check here this probability
+                
+                float p = (random(100) +1) / 100 // yields a number [0,01 .. 1]
+                // random yields an integer so 1% is the minimum we can get
+                if (p <= ALARMFAILURE_PROBABILITY)
+                {
+                    // alarm failure
+                    // alarm call will fail and "triggered" status will revert back to "normal"
+                    // we also register the cause of the failure and increment a counter for testing purposes (which will be shown)
+                    Alarm_Triggered.postUpdate(CLOSED)
+                    alarmFailure_count++; 
+                    AlarmFailures_count.postUpdate(alarmFailure_count)
+
+                    // checking alarm failure reason here
+                    float pReason = (random(100) +1) / 100 // [0,01 .. 1]
+                    if (pReason <= ALARMFAILURE_CAUSEDBYSYSTEM_PROBABILITY)
+                    { 
+                        alarmFailure_bySystem_count++; 
+                        AlarmFailures_CausedBySystem_count.postUpdate(alarmFailure_bySystem_count)
+                    }
+                }   
+                else
+                {
+                   // alarm is functioning normally
+                    val message = alarmMessage_base + alarmMessage
+                    val encodedMessage = URLEncoder::encode(message, 'UTF-8')
+                    // testing "test scenarios": delete call
+                    //sendHttpGetRequest("http://api.callmebot.com/start.php?source=openHAB&user=@Zynthos&text="+ encodedMessage + "&lang=en-GB-Standard-B")
+                    
+                    alarmTriggers_count++; 
+                    Alarm_Triggers_count.postUpdate(alarmTriggers_count)
+
+                    Alarm_Triggered_Reason.postUpdate(alarmMessage)
+                    Alarm_Triggered_Time.postUpdate(new DateTimeType())
+
+                    var Timer resetTimer = createTimer(now.plusSeconds(RESET_TIME), [|
+                        Alarm_Triggered.postUpdate(CLOSED)
+                        resetTimer = null   // reset the timer
+                    ]) 
+                }
+                */
+            }
+            else
+            {
+                // alarm is functioning normally
+                val message = alarmMessage_base + alarmMessage
+                val encodedMessage = URLEncoder::encode(alarmMessage, 'UTF-8')
+                
+                // call my phone via telegram using callmebot api
+                sendHttpGetRequest("http://api.callmebot.com/start.php?source=openHAB&user=@Zynthos&text="+ encodedMessage + "&lang=en-GB-Standard-B")
+                
+                alarmTriggers_count++; 
+                Alarm_Triggers_count.postUpdate(alarmTriggers_count)
+
+                log += alarmMessage + " || "
+                AlarmLog.postUpdate(log)
+
+                Alarm_Triggered_Reason.postUpdate(alarmMessage)
+                Alarm_Triggered_Time.postUpdate(new DateTimeType())
+
+                var Timer resetTimer = createTimer(now.plusSeconds(RESET_TIME), [|
+                    Alarm_Triggered.postUpdate(CLOSED)
+                    resetTimer = null   // reset the timer
+                ])
+
+            }
+        }
+        else
+            Alarm_Triggered.postUpdate(CLOSED)
+
+end
+
+// **** alarm trigger rules start here ****
+
+// temperature
+rule "temperature trigger alarm"
+    when
+        Member of Temperature received update
+    then
+        // threshold check
+        if ( (triggeringItem.state as DecimalType).floatValue < threshold_temperature_min ||
+             (triggeringItem.state as DecimalType).floatValue > threshold_temperature_max )
+        {
+            // check this thing (device) is armed by checking value of its ArmDisarm switch button
+            // this line means -> get all members of ArmDisarm, filter only ones whose group list contains the first group of the triggeringItem (eg. "FamilyRoom")
+            val SwitchItem isThingArmed = ArmDisarm.members.filter(i|i.getGroupNames.contains(triggeringItem.getGroupNames.get(0))).get(0)
+            if (isThingArmed.state == ON)
+            {
+                // only if it is armed, then call the alarm
+                alarmMessage = "Temperature value outside range in "+ triggeringItem.name.split("_").get(0) +". Value: " +triggeringItem.state + " degrees."
+                Alarm_Triggered.postUpdate(OPEN) 
+            }
+        }
+        totalMeasurements++
+        TotalMeasurements.postUpdate(totalMeasurements)
+end
+
+// humidity
+rule "humidity trigger alarm"
+    when
+        Member of Humidity received update
+    then
+        if ( (triggeringItem.state as DecimalType).floatValue < threshold_humidity_min ||
+             (triggeringItem.state as DecimalType).floatValue > threshold_humidity_max )
+        {
+            // check this thing (device) is armed by checking value of its ArmDisarm switch button
+            // this line means -> get all members of ArmDisarm, filter only ones whose group list contains the first group of the triggeringItem (eg. "FamilyRoom")
+            val SwitchItem isThingArmed = ArmDisarm.members.filter(i|i.getGroupNames.contains(triggeringItem.getGroupNames.get(0))).get(0)
+            if (isThingArmed.state == ON)
+            {
+                alarmMessage = "Humidity value outside range in "+ triggeringItem.name.split("_").get(0) +". Value: " +triggeringItem.state + " %."
+                Alarm_Triggered.postUpdate(OPEN) 
+            }
+        }
+        totalMeasurements++
+        TotalMeasurements.postUpdate(totalMeasurements)
+end
+
+// air quality
+rule "co2 trigger alarm"
+    when
+        Member of CO2 received update
+    then
+        if ( (triggeringItem.state as DecimalType).floatValue > threshold_airqualityco2_max)
+        {
+            // check this thing (device) is armed by checking value of its ArmDisarm switch button
+            // this line means -> get all members of ArmDisarm, filter only ones whose group list contains the first group of the triggeringItem (eg. "FamilyRoom")
+            val SwitchItem isThingArmed = ArmDisarm.members.filter(i|i.getGroupNames.contains(triggeringItem.getGroupNames.get(0))).get(0)
+            if (isThingArmed.state == ON)
+            {
+                alarmMessage = "CO2 (Carbon dioxide) value outside range in "+ triggeringItem.name.split("_").get(0) +". Value: " +triggeringItem.state + " ppm"
+                Alarm_Triggered.postUpdate(OPEN) 
+            }
+        }
+        totalMeasurements++
+        TotalMeasurements.postUpdate(totalMeasurements)
+end
+
+rule "co trigger alarm"
+    when
+        Member of CO received update
+    then
+        if ( (triggeringItem.state as DecimalType).floatValue > threshold_airqualityco_max)
+        {
+            // check this thing (device) is armed by checking value of its ArmDisarm switch button
+            // this line means -> get all members of ArmDisarm, filter only ones whose group list contains the first group of the triggeringItem (eg. "FamilyRoom")
+            val SwitchItem isThingArmed = ArmDisarm.members.filter(i|i.getGroupNames.contains(triggeringItem.getGroupNames.get(0))).get(0)
+            if (isThingArmed.state == ON)
+            {
+                alarmMessage = "CO (Carbon monoxide) value outside range in"+ triggeringItem.name.split("_").get(0) +". Value: " +triggeringItem.state + " ppm"
+                Alarm_Triggered.postUpdate(OPEN) 
+            }
+        }
+end
+
+rule "pm25 trigger alarm"
+    when
+        Member of PM25 received update
+    then
+        if ( (triggeringItem.state as DecimalType).floatValue > threshold_airqualitypm25_max)
+        {
+            // check this thing (device) is armed by checking value of its ArmDisarm switch button
+            // this line means -> get all members of ArmDisarm, filter only ones whose group list contains the first group of the triggeringItem (eg. "FamilyRoom")
+            val SwitchItem isThingArmed = ArmDisarm.members.filter(i|i.getGroupNames.contains(triggeringItem.getGroupNames.get(0))).get(0)
+            if (isThingArmed.state == ON)
+            {
+                alarmMessage = "PM 2.5 (Fine particles) value outside range in"+ triggeringItem.name.split("_").get(0) +". Value: " +triggeringItem.state + " ppm"
+                Alarm_Triggered.postUpdate(OPEN) 
+            }
+        }
+end
+
+rule "tvoc trigger alarm"
+    when
+        Member of TVOC received update
+    then
+        if ( (triggeringItem.state as DecimalType).floatValue > threshold_airqualitytvoc_max)
+        {
+            // check this thing (device) is armed by checking value of its ArmDisarm switch button
+            // this line means -> get all members of ArmDisarm, filter only ones whose group list contains the first group of the triggeringItem (eg. "FamilyRoom")
+            val SwitchItem isThingArmed = ArmDisarm.members.filter(i|i.getGroupNames.contains(triggeringItem.getGroupNames.get(0))).get(0)
+            if (isThingArmed.state == ON)
+            {
+                alarmMessage = "TVOC (Total volatile organic compounds) value outside range in "+ triggeringItem.name.split("_").get(0) +". Value: " +triggeringItem.state + " ppm"
+                Alarm_Triggered.postUpdate(OPEN) 
+            }
+        }
+end
+
+// smoke
+rule "smoke trigger alarm"
+    when
+        Member of Smoke received update
+    then
+        if (triggeringItem.state == OPEN)
+        {   
+            // check this thing (device) is armed by checking value of its ArmDisarm switch button
+            // this line means -> get all members of ArmDisarm, filter only ones whose group list contains the first group of the triggeringItem (eg. "FamilyRoom")
+            val SwitchItem isThingArmed = ArmDisarm.members.filter(i|i.getGroupNames.contains(triggeringItem.getGroupNames.get(0))).get(0)
+            if (isThingArmed.state == ON)
+            {
+                alarmMessage = "Presence of Smoke detected in "+ triggeringItem.name.split("_").get(0)
+                Alarm_Triggered.postUpdate(OPEN)    
+            }
+        }
+        totalMeasurements++
+        TotalMeasurements.postUpdate(totalMeasurements)
+end
+
+// motion
+rule "motion trigger alarm"
+    when
+        Member of Motion received update
+    then
+        if (triggeringItem.state == OPEN)
+        {
+            // check this thing (device) is armed by checking value of its ArmDisarm switch button
+            // this line means -> get all members of ArmDisarm, filter only ones whose group list contains the first group of the triggeringItem (eg. "FamilyRoom")
+            val SwitchItem isThingArmed = ArmDisarm.members.filter(i|i.getGroupNames.contains(triggeringItem.getGroupNames.get(0))).get(0)
+            if (isThingArmed.state == ON)
+            {
+                alarmMessage = "Motion detected in "+ triggeringItem.name.split("_").get(0)
+                Alarm_Triggered.postUpdate(OPEN) 
+            }
+        }
+        totalMeasurements++
+        TotalMeasurements.postUpdate(totalMeasurements)
+end
+
+// flood
+rule "flood trigger alarm"
+    when
+        Member of Flood received update
+    then
+        if (triggeringItem.state == OPEN)
+        {
+            // check this thing (device) is armed by checking value of its ArmDisarm switch button
+            // this line means -> get all members of ArmDisarm, filter only ones whose group list contains the first group of the triggeringItem (eg. "FamilyRoom")
+            val SwitchItem isThingArmed = ArmDisarm.members.filter(i|i.getGroupNames.contains(triggeringItem.getGroupNames.get(0))).get(0)
+            if (isThingArmed.state == ON)
+            {
+                alarmMessage = "Water leakage detected in "+ triggeringItem.name.split("_").get(0)
+                Alarm_Triggered.postUpdate(OPEN) 
+            }
+        }
+        totalMeasurements++
+        TotalMeasurements.postUpdate(totalMeasurements)
+end
+
+// **** SCENARIO RELATED RULES ****
+rule "activate alarm failure scenario" 
+    when
+        Item Scenario changed
+    then
+        // we use this to init all scenario related fields
+        if (Scenario.state == Scenario_SensorFailure)
+        {
+            totalMeasurements = 0
+            TotalMeasurements.postUpdate(0)
+            Alarm_Triggers_count = 0
+            Alarm_Triggers_count.postUpdate(0)
+        }
+        
+        // check we activated scenario "ALARM_FAILURE"
+        // which is the only one implemented here in openhab
+        // the others being implemented in the safehome system
+        else if (Scenario.state == Scenario_AlarmFailure)
+        {    
+            isScenarioActive = true
+        }
+end

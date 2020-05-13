@@ -1,0 +1,4 @@
+OPEN=ALARMED
+CLOSED=NORMAL
+-=N/A
+NULL=unknown

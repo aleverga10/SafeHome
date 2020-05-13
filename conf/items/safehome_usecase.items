@@ -1,0 +1,39 @@
+// use case show-off only, not functional to safehome 
+
+Group Kitchen "Kitchen" <kitchen> (Home, GF) ["Room"]
+Group Corridor "Corridor" <corridor> (Home, GF) ["Room"]
+Group Bedroom "Bedroom" <bedroom> (Home, GF) ["Room"]
+Group Garage "Garage" <garage> (Home, GF) ["Room"]
+
+Group Lights
+Group Contacts
+Group Rollershutters
+
+Switch Kitchen_Light "Main light" <light-off> (Kitchen, Lights)
+Switch Kitchen_Light_1 "Stove light" <light> (Kitchen, Lights)
+Switch Corridor_Light "Light" <light> (Corridor, Lights)
+Switch Bedroom_Light "Light" <light> (Bedroom, Lights)
+Switch Garage_Light "Light" <light> (Garage, Lights)
+Switch Bathroom_Light "Main light" <light> (Bathroom, Lights)
+Switch Bathroom_Light_1 "Mirror light" <light> (Bathroom, Lights)
+Switch LivingRoom_Light "Main light" <light> (FamilyRoom, Lights)
+Switch LivingRoom_Light_1 "Sofa light" <light> (FamilyRoom, Lights)
+
+Contact Kitchen_Window "Window [%s]" <window> (Kitchen, Contacts)
+Contact Bathroom_Window "Window [%s]" <window> (Bathroom, Contacts)
+Contact Bedroom_Window "Window [%s]" <window> (Bedroom, Contacts)
+Contact LivingRoom_Window "Left Window [%s]" <window> (FamilyRoom, Contacts)
+Contact LivingRoom_Window_1 "Right Window [%s]" <window> (FamilyRoom, Contacts)
+
+Contact Kitchen_Door "Door [%s]" <door> (Kitchen, Contacts)
+Contact Bathroom_Door "Door [%s]" <door> (Bathroom, Contacts)
+Contact Bedroom_Door "Door [%s]" <door> (Bedroom, Contacts)
+Contact LivingRoom_Door "Main door [%s]" <frontdoor> (FamilyRoom, Contacts)
+Contact LivingRoom_Door_1 "Terrace door [%s]" <terrace> (FamilyRoom, Contacts)
+
+Rollershutter Kitchen_Rs "Blinds [%d%%]" <blinds> (Kitchen, Rollershutters)
+Rollershutter Bathroom_Rs "Blinds [%d%%]" <blinds> (Bathroom, Rollershutters)
+Rollershutter Bedroom_Rs "Blinds [%d%%]" <blinds> (Bedroom, Rollershutters)
+Rollershutter LivingRoom_Rs "Left window blinds [%d%%]" <blinds> (FamilyRoom, Rollershutters)
+Rollershutter LivingRoom_Rs_1 "Right window blinds [%d%%]" <blinds> (FamilyRoom, Rollershutters)
+Rollershutter Garage_Door "Garage door [%d%%]" <garagedoor> (Garage, Rollershutters)

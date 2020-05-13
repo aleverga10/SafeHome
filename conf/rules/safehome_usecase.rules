@@ -1,0 +1,30 @@
+import java.util.Random
+
+val Random random = new Random()
+
+rule "Initialize light states"
+when
+    System started
+then
+    Lights?.members.forEach(light|
+        postUpdate(light, if (Math::random > 0.7) ON else OFF)
+    )
+end
+
+rule "Initialize contact states"
+when
+    System started
+then
+    Contacts?.members.forEach(window|
+        postUpdate(window, if (Math::random > 0.5) OPEN else CLOSED)
+    )
+end
+
+rule "Initialize rollershutter states"
+when
+    System started
+then
+    Rollershutters?.members.forEach(shutter|
+        postUpdate(shutter, Math::random * 100)
+    )
+end

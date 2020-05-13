@@ -1,0 +1,24 @@
+sitemap safehome label="SafeHome" {
+    Frame label="Home"{
+        Group item=FamilyRoom
+        Group item=Bathroom
+    }
+
+    Frame label="Alarm"{
+        Switch item=Alarm_Activator mappings=[OFF="DISARMED", ON="ARMED"]
+        Default item=Alarm_Triggered
+        Default item=Alarm_Triggered_Time
+        Text item=Alarm_Triggered_Reason
+    }
+
+    Frame label="Undesirable situations"
+    {
+        Group item=Thresholds
+    }
+
+    Frame label="Testing scenarios"
+    {
+        Text item=Scenario
+        Group item=Scenario_Tests
+    }
+}

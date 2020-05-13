@@ -1,0 +1,74 @@
+Group Home "SafeHome Demo" < house > ["Building"]
+
+Group GF "Home" < groundfloor > (Home)["GroundFloor"]
+
+Group FamilyRoom "LivingRoom" < parents_2_4 > (Home, GF)["Room"]
+Group Bathroom   "Bathroom" < bath > (Home, GF)["Bathroom"]
+
+
+// data type groups
+Group Temperature 
+Group Humidity 
+Group AirQuality
+Group CO2 (AirQuality)
+Group CO (AirQuality)
+Group PM25 (AirQuality)
+Group TVOC (AirQuality)
+Group Smoke
+Group Motion
+Group Flood
+Group ArmDisarm
+
+// ***** family room items start here *****
+
+Number LivingRoom_TEMP01 "Temperature" < temperature > (FamilyRoom, Temperature) {channel = "safehome_se:model_thasm:THASM00:temperature_sensor#curr_temperature"}
+Number LivingRoom_HUMD02 "Humidity" < humidity > (FamilyRoom, Humidity) {channel = "safehome_se:model_thasm:THASM00:humidity_sensor#curr_humidity"}
+
+Number LivingRoom_AIRQ03_CO2 "Levels of CO2 (Carbon dioxide)" < carbondioxide > (FamilyRoom, CO2) {channel = "safehome_se:model_thasm:THASM00:airquality_sensor#curr_airq_co2"}
+Number LivingRoom_AIRQ03_CO  "Levels of CO (Carbon monoxide)" < error > (FamilyRoom, CO) {channel = "safehome_se:model_thasm:THASM00:airquality_sensor#curr_airq_co"}
+Number LivingRoom_AIRQ03_PM25 "Levels of PM 2.5 (Fine particles) " < flow > (FamilyRoom, PM25) {channel = "safehome_se:model_thasm:THASM00:airquality_sensor#curr_airq_pm25"}
+Number LivingRoom_AIRQ03_TVOC "Levels of TVOC (Tot. Volatile Org. Compounds) " < gas > (FamilyRoom, TVOC) {channel = "safehome_se:model_thasm:THASM00:airquality_sensor#curr_airq_tvoc"}
+
+Contact LivingRoom_SMOK06 "Presence of Smoke [MAP(safehome.map):%s]" < smoke > (FamilyRoom, Smoke) {channel = "safehome_se:model_thasm:THASM00:smoke_sensor#curr_smoke"}
+Contact LivingRoom_MOTN07 "Motion [MAP(safehome.map):%s]" < motion > (FamilyRoom, Motion) {channel = "safehome_se:model_thasm:THASM00:motion_sensor#curr_motion"}
+
+Switch LivingRoom_ArmDisarm "Arm sensor [MAP(safehome.map):%s]" <switch> (FamilyRoom, ArmDisarm)
+
+// ***** Bathroom items start here *****
+
+Number Bathroom_TEMP04 "Temperature" < temperature > (Bathroom, Temperature) {channel = "safehome_se:model_thf:THF01:temperature_sensor#curr_temperature"}
+Number Bathroom_HUMD05 "Humidity" < humidity > (Bathroom, Humidity) {channel = "safehome_se:model_thf:THF01:humidity_sensor#curr_humidity"}
+Contact Bathroom_FLOD08 "Water leakage [MAP(safehome.map):%s]" < water > (Bathroom, Flood) {channel = "safehome_se:model_thf:THF01:flood_sensor#curr_flood"}
+Switch Bathroom_ArmDisarm "Arm sensor [MAP(safehome.map):%s]" <switch> (Bathroom, ArmDisarm)
+
+// ***** Alarm related items start here *****
+Switch Alarm_Activator "Arm alarm" < lock > (Home)
+Contact Alarm_Triggered "Alarm status [MAP(safehomealarm.map):%s]" < siren > (Home)
+DateTime Alarm_Triggered_Time "Latest alarm [%1$tA %1$tT]" < time > (Home)
+String Alarm_Triggered_Reason "Info [%s]" < text > (Home)
+
+// ***** testing scenarios related items start here *****
+Group Scenario_Tests "Testing scenarios: results"  < lowbattery > (Home)
+
+String Scenario "Active Scenario [%s] "< settings > (Home)
+
+Number TotalMeasurements "Total measurements, count [%s]" < text > (Scenario_Tests)
+Number Alarm_Triggers_count "Alarm triggers, count [%s]" < siren > (Scenario_Tests)
+String AlarmLog "Alarm Log [%s]" <text> (Scenario_Tests)
+
+// ***** Threshold related items start here *****
+Group Thresholds "Threshold values" <error>
+Number Threshold_Temp_Min "Temperature MIN [%.0f °C]" <temperature_cold> (Thresholds)
+Number Threshold_Temp_Max "Temperature MAX [%.0f °C]" <temperature_hot> (Thresholds)
+
+Number Threshold_Humd_Min "Humidity MIN [%.0f %%]"  <returnpipe> (Thresholds)
+Number Threshold_Humd_Max "Humidity MAX [%.0f %%]" <flowpipe> (Thresholds)
+
+Number Threshold_Airq_CO2_Max "Levels of CO2 MAX [%s ppm]" <carbondioxide> (Thresholds)
+Number Threshold_Airq_CO_Max "Levels of CO MAX [%s ppm]" <error> (Thresholds)
+Number Threshold_Airq_PM25_Max "Levels of PM 2.5 MAX [%s ppm]" <flow> (Thresholds)
+Number Threshold_Airq_TVOC_Max "Levels of TVOC MAX [%s ppm]" <gas> (Thresholds)
+
+String Threshold_Motn "Motion DETECTION THRESHOLD [%s]" <motion> (Thresholds)
+String Threshold_Smok "Smoke DETECTION THRESHOLD [%s]" <smoke> (Thresholds)
+String Threshold_Flod "Water leakage DETECTION THRESHOLD [%s]" <water> (Thresholds)
