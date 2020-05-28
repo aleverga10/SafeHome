@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="safehome_ss.gui.GUI_LogController">
    <children>
-      <Label alignment="CENTER" layoutX="311.0" layoutY="66.0" prefHeight="60.0" prefWidth="223.0" text="Log eventi">
+      <Label alignment="CENTER" layoutX="311.0" layoutY="66.0" prefHeight="60.0" prefWidth="223.0" text="Event log">
          <font>
             <Font size="32.0" />
          </font>
