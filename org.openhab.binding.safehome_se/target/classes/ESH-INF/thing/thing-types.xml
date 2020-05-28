@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="safehome_se"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+
+	<!-- Sample Thing Type 
+	<thing-type id="sample">
+		<label>SafeHome_SE Binding Thing</label>
+		<description>Sample thing for SafeHome_SE Binding</description>
+
+		<channels>
+			<channel id="channel1" typeId="sample-channel" />
+		</channels>
+
+		<config-description>
+			<parameter name="config1" type="text" required="true">
+				<label>Sample Parameter</label>
+				<description>This is a sample text configuration parameter</description>
+			</parameter>
+		</config-description>
+
+	</thing-type>
+	-->
+
+	<!-- Thing types representing supported models -->
+	
+	<!-- one typed sensors -->
+	<thing-type id="model_t">
+		<label>Simulated Sensor Model T</label>
+		<description>A simulated sensor that can measure the current Temperature.</description>
+		<category>Sensor</category>
+		<channel-groups>
+			<channel-group id="temperature_sensor" typeId="TemperatureSensor" />
+		</channel-groups>
+	</thing-type>
+
+	<thing-type id="model_h">
+		<label>Simulated Sensor Model H</label>
+		<description>A simulated sensor that can measure the current relative Humidity.</description>
+		<category>Sensor</category>
+		<channel-groups>
+			<channel-group id="humidity_sensor" typeId="HumiditySensor" />
+		</channel-groups>
+	</thing-type>
+
+	<thing-type id="model_a">
+		<label>Simulated Sensor Model A</label>
+		<description>A simulated sensor that can measure the current Air quality as amounts of CO2, CO, PM2.5, TVOC.</description>
+		<category>Sensor</category>
+		<channel-groups>
+			<channel-group id="airquality_sensor" typeId="AirQualitySensor" />
+		</channel-groups>
+	</thing-type>
+
+	<thing-type id="model_s">
+		<label>Simulated Sensor Model S</label>
+		<description>A simulated sensor that has Smoke detection.</description>
+		<category>Sensor</category>
+		<channel-groups>
+			<channel-group id="smoke_sensor" typeId="SmokeSensor" />
+		</channel-groups>
+	</thing-type>
+
+	<thing-type id="model_m">
+		<label>Simulated Sensor Model M</label>
+		<description>A simulated sensor that has Motion detection.</description>
+		<category>Sensor</category>
+		<channel-groups>
+			<channel-group id="motion_sensor" typeId="MotionSensor" />
+		</channel-groups>
+	</thing-type>
+
+	<thing-type id="model_f">
+		<label>Simulated Sensor Model T</label>
+		<description>A simulated sensor that has Flood (water leakage) detection.</description>
+		<category>Sensor</category>
+		<channel-groups>
+			<channel-group id="flood_sensor" typeId="FloodSensor" />
+		</channel-groups>
+	</thing-type>
+
+	<!-- two typed sensors -->
+	<thing-type id="model_th">
+		<label>Simulated Sensor Model TH</label>
+		<description>A simulated sensor that can measure the current Temperature and relative Humidity.</description>
+		<category>Sensor</category>
+		<channel-groups>
+			<channel-group id="temperature_sensor" typeId="TemperatureSensor" />
+			<channel-group id="humidity_sensor" typeId="HumiditySensor" />
+		</channel-groups>
+	</thing-type>
+
+	<thing-type id="model_tf">
+		<label>Simulated Sensor Model TF</label>
+		<description>A simulated sensor that can measure the current Temperature and has Flood (water leakage) detection.</description>
+		<category>Sensor</category>
+		<channel-groups>
+			<channel-group id="temperature_sensor" typeId="TemperatureSensor" />
+			<channel-group id="flood_sensor" typeId="FloodSensor" />
+		</channel-groups>
+	</thing-type>
+
+	<thing-type id="model_ha">
+		<label>Simulated Sensor Model HA</label>
+		<description>A simulated sensor that can measure the current relative Humidity and Air quality as amounts of CO2, CO, PM2.5, TVOC.</description>
+		<category>Sensor</category>
+		<channel-groups>
+			<channel-group id="humidity_sensor" typeId="HumiditySensor" />
+			<channel-group id="airquality_sensor" typeId="AirQualitySensor" />
+		</channel-groups>
+	</thing-type>
+	
+	<thing-type id="model_sm">
+		<label>Simulated Sensor Model SM</label>
+		<description>A simulated sensor that has Smoke and Motion detection.</description>
+		<category>Sensor</category>
+		<channel-groups>
+			<channel-group id="smoke_sensor" typeId="SmokeSensor" />
+			<channel-group id="motion_sensor" typeId="MotionSensor" />
+		</channel-groups>
+	</thing-type>
+
+	<!-- three typed sensors -->
+	<thing-type id="model_thf">
+		<label>Simulated Sensor Model THF</label>
+		<description>A simulated sensor that can measure the current Temperature, relative Humidity, and has Flood (water leakage) detection.</description>
+		<category>Sensor</category>
+		<channel-groups>
+			<channel-group id="temperature_sensor" typeId="TemperatureSensor" />
+			<channel-group id="humidity_sensor" typeId="HumiditySensor" />
+			<channel-group id="flood_sensor" typeId="FloodSensor" />
+		</channel-groups>
+	</thing-type>
+
+	<thing-type id="model_tha">
+		<label>Simulated Sensor Model THA</label>
+		<description>A simulated sensor that can measure the current Temperature, relative Humidity and Air quality (CO2, CO, PM2.5, TVOC).</description>
+		<category>Sensor</category>
+		<channel-groups>
+			<channel-group id="temperature_sensor" typeId="TemperatureSensor" />
+			<channel-group id="humidity_sensor" typeId="HumiditySensor" />
+			<channel-group id="airquality_sensor" typeId="AirQualitySensor" />
+		</channel-groups>
+	</thing-type>
+
+	<thing-type id="model_has">
+		<label>Simulated Sensor Model HAS</label>
+		<description>A simulated sensor that can measure the current relative Humidity, Air quality (CO2, CO, PM2.5, TVOC) and has Smoke detection.</description>
+		<category>Sensor</category>
+		<channel-groups>
+			<channel-group id="humidity_sensor" typeId="HumiditySensor" />
+			<channel-group id="airquality_sensor" typeId="AirQualitySensor" />
+			<channel-group id="smoke_sensor" typeId="SmokeSensor" />
+		</channel-groups>
+	</thing-type>
+
+	<!-- more than three typed sensors -->
+	<thing-type id="model_thasm">
+		<label>Simulated Sensor Model THASM</label>
+		<description>A simulated sensor that can measure the current Temperature, relative Humidity, Air quality as amounts of CO2, CO, PM2.5, TVOC, and has Smoke and Motion detection.</description>
+		<category>Sensor</category>
+		<channel-groups>
+			<channel-group id="temperature_sensor" typeId="TemperatureSensor" />
+			<channel-group id="humidity_sensor" typeId="HumiditySensor" />
+			<channel-group id="airquality_sensor" typeId="AirQualitySensor" />
+			<channel-group id="smoke_sensor" typeId="SmokeSensor" />
+			<channel-group id="motion_sensor" typeId="MotionSensor" />
+		</channel-groups>
+	</thing-type>
+
+	<thing-type id="model_thasm">
+		<label>Simulated Sensor Model THASMF</label>
+		<description>A simulated sensor that can measure the current Temperature, relative Humidity, Air quality (CO2, CO, PM2.5, TVOC) and has Smoke, Motion and Flood (water leakage) detection.</description>
+		<category>Sensor</category>
+		<channel-groups>
+			<channel-group id="temperature_sensor" typeId="TemperatureSensor" />
+			<channel-group id="humidity_sensor" typeId="HumiditySensor" />
+			<channel-group id="airquality_sensor" typeId="AirQualitySensor" />
+			<channel-group id="smoke_sensor" typeId="SmokeSensor" />
+			<channel-group id="motion_sensor" typeId="MotionSensor" />
+			<channel-group id="flood_sensor" typeId="FloodSensor" />
+		</channel-groups>
+	</thing-type>
+
+
+	<!-- Channel groups representing supported sensors -->
+	<channel-group-type id="TemperatureSensor">
+		<label>Room Temperature</label>
+		<description>Room temperature measured by a sensor.</description>
+		<channels>
+			<channel id="curr_temperature" typeId="CurrentTemperature" />
+			<channel id="last_measurement_time" typeId="LastMeasurementTime" />
+		</channels>
+	</channel-group-type>
+
+	<channel-group-type id="HumiditySensor">
+		<label>Room Relative Humidity</label>
+		<description>Room relative humidity measured by a sensor.</description>
+		<channels>
+			<channel id="curr_humidity" typeId="CurrentRelativeHumidity" />
+			<channel id="last_measurement_time" typeId="LastMeasurementTime" />
+		</channels>
+	</channel-group-type>
+
+	<channel-group-type id="AirQualitySensor">
+		<label>Room Air Quality</label>
+		<description>Room air quality measured by a sensor that can detect quantities of CO2, CO, PM2.5 and TVOCs.</description>
+		<channels>
+			<channel id="curr_airq_co2" typeId="CurrentAirQCO2" />
+			<channel id="curr_airq_co" typeId="CurrentAirQCO" />
+			<channel id="curr_airq_pm25" typeId="CurrentAirQPM25" />
+			<channel id="curr_airq_tvoc" typeId="CurrentAirQTVOC" />
+			<channel id="last_measurement_time" typeId="LastMeasurementTime" />
+		</channels>
+	</channel-group-type>
+
+	<channel-group-type id="SmokeSensor">
+		<label>Smoke detector</label>
+		<description>Detects the presence of smoke in the room.</description>
+		<channels>
+			<channel id="curr_smoke" typeId="CurrentSmoke" />
+			<channel id="last_measurement_time" typeId="LastMeasurementTime" />
+		</channels>
+	</channel-group-type>
+
+	<channel-group-type id="MotionSensor">
+		<label>Motion detector</label>
+		<description>Detects motion in the room.</description>
+		<channels>
+			<channel id="curr_motion" typeId="CurrentMotion" />
+			<channel id="last_measurement_time" typeId="LastMeasurementTime" />
+		</channels>
+	</channel-group-type>
+
+	<channel-group-type id="FloodSensor">
+		<label>Flood detector</label>
+		<description>Detects water leakage in the room.</description>
+		<channels>
+			<channel id="curr_flood" typeId="CurrentFlood" />
+			<channel id="last_measurement_time" typeId="LastMeasurementTime" />
+		</channels>
+	</channel-group-type>
+
+	<!-- Channel types representing sensors data -->
+	<channel-type id="CurrentTemperature">
+		<item-type>Number</item-type>
+		<label>Current Temperature</label>
+		<description>Current measured room temperature.</description>
+		<category>Temperature</category>
+		<state pattern="%.1f °C" readOnly="true">
+		</state>
+	</channel-type>
+
+	<channel-type id="CurrentRelativeHumidity">
+		<item-type>Number</item-type>
+		<label>Current Relative Humidity</label>
+		<description>Current measured room relative humidity.</description>
+		<category>Humidity</category>
+		<state pattern="%.1f%%" readOnly="true">
+		</state>
+	</channel-type>
+
+	<channel-type id="CurrentAirQCO2">
+		<item-type>Number</item-type>
+		<label>Current CO2 Level</label>
+		<description>Current measured CO2 levels in the room.</description>
+		<category>CarbonDioxide</category>
+		<state pattern="%d ppm" readOnly="true">
+		</state>
+	</channel-type>
+
+	<channel-type id="CurrentAirQCO">
+		<item-type>Number</item-type>
+		<label>Current CO Level</label>
+		<description>Current measured CO levels in the room.</description>
+		<category>CarbonOxide</category>
+		<state pattern="%.1f ppm" readOnly="true">
+		</state>
+	</channel-type>
+
+	<channel-type id="CurrentAirQPM25">
+		<item-type>Number</item-type>
+		<label>Current PM2.5 Level</label>
+		<description>Current measured PM2.5 levels in the room.</description>
+		<category>PM25</category>
+		<state pattern="%.2f ppm" readOnly="true">
+		</state>
+	</channel-type>
+
+	<channel-type id="CurrentAirQTVOC">
+		<item-type>Number</item-type>
+		<label>Current TVOC Level</label>
+		<description>Current measured TVOCs (Total VOCs) levels in the room.</description>
+		<category>TVOC</category>
+		<state pattern="%.1f ppm" readOnly="true">
+		</state>
+	</channel-type>
+	
+	<channel-type id="CurrentSmoke">
+		<kind>trigger</kind>
+		<label>Smoke</label>
+		<description>Shows if smoke was detected in the room.</description>
+		<category>Smoke</category>
+		<event>
+			<options>
+				<option value="detected">Detected</option>
+				<option value="not_detected">Not detected</option>
+			</options>
+		</event>
+	</channel-type>
+
+	<channel-type id="CurrentMotion">
+		<kind>trigger</kind>
+		<label>Motion</label>
+		<description>Shows if motion was detected in the room.</description>
+		<category>Motion</category>
+		<event>
+			<options>
+				<option value="detected">Detected</option>
+				<option value="not_detected">Not detected</option>
+			</options>
+		</event>
+	</channel-type>
+
+	<channel-type id="CurrentFlood">
+		<kind>trigger</kind>
+		<label>Flood</label>
+		<description>Shows if water leakage was detected in the room.</description>
+		<category>Flood</category>
+		<event>
+			<options>
+				<option value="detected">Detected</option>
+				<option value="not_detected">Not detected</option>
+			</options>
+		</event>
+	</channel-type>
+
+	<channel-type id="LastMeasurementTime" advanced="true">
+		<item-type>DateTime</item-type>
+		<label>Last Measurement</label>
+		<description>Date and time of the last measurement received.</description>
+		<category>Time</category>
+		<state pattern="%1$tA %1$tT" readOnly="true">
+		</state>
+	</channel-type>
+
+	<!-- Sample Channel Type 
+	<channel-type id="sample-channel">
+		<item-type>safehome_seItem</item-type>
+		<label>SafeHome_SE Binding Channel</label>
+		<description>Sample channel for SafeHome_SE Binding</description>
+	</channel-type>
+	-->
+</thing:thing-descriptions>

@@ -1,0 +1,4 @@
+org\openhab\binding\safehome_se\internal\SafeHome_SEHandlerFactory.class
+org\openhab\binding\safehome_se\internal\SafeHome_SEConfiguration.class
+org\openhab\binding\safehome_se\internal\SafeHome_SEBindingConstants.class
+org\openhab\binding\safehome_se\internal\SafeHome_SEHandler.class
