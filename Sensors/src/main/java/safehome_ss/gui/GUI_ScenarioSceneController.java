@@ -39,7 +39,7 @@ public class GUI_ScenarioSceneController
         String[] biases = { SensorBiasType.GAUSSIAN.toString(), SensorBiasType.RANDOM.toString()}; 
         biasType.setItems(FXCollections.observableArrayList(biases));
         
-        String[] scenarios = { ScenarioTypes.SENSOR_FAILURE.toString(), ScenarioTypes.MEASUREMENT_ERROR.toString(), ScenarioTypes.ALARM_FAILURE.toString(), ScenarioTypes.OPENHAB_DELAY.toString()}; 
+        String[] scenarios = { ScenarioTypes.SENSOR_FAILURE.toString(), ScenarioTypes.MEASUREMENT_ERROR.toString(), ScenarioTypes.OPENHAB_DELAY.toString()}; 
         scenario.setItems(FXCollections.observableArrayList(scenarios));
     }
 

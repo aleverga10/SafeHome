@@ -13,7 +13,7 @@ import safehome_ss.pubsub.Event.EventType;
 
 public class ScenarioController 
 {
-    public enum ScenarioTypes { NONE, SENSOR_FAILURE, MEASUREMENT_ERROR, ALARM_FAILURE, OPENHAB_DELAY };
+    public enum ScenarioTypes { NONE, SENSOR_FAILURE, MEASUREMENT_ERROR, OPENHAB_DELAY };
     public enum SensorBiasType { GAUSSIAN, RANDOM }; 
     public SensorBiasType biasType; 
     public ScenarioTypes scenario; 
@@ -82,6 +82,7 @@ public class ScenarioController
         Log.getInstance().Write(" *** TESTING SCENARIO ("+ this.scenario + ") biastype = "+ biasType + " pMax =" + scenarioME_randomBiasProbability);
     }
 
+    /*
     public void ActivateScenario_AlarmFailure()
     {
         // this scenario is not implemented in this system, but it is directly in OpenHAB 
@@ -95,7 +96,7 @@ public class ScenarioController
 
         Log.getInstance().Write(" *** TESTING SCENARIO ("+ this.scenario + ") on OpenHAB");
     }
-
+*/
     public void ActivateScenario_OpenHABDelay()
     {
         // the scenario will be checked upon calling openhab
