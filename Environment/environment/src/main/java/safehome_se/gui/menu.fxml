@@ -87,7 +87,8 @@
             </JFXButton>
          </children>
       </VBox>
-<Pane layoutY="423.0" prefHeight="177.0" prefWidth="179.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="423.0">
+<!--
+   <Pane layoutY="423.0" prefHeight="177.0" prefWidth="179.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="423.0">
          <children>
             <ImageView fitHeight="72.0" fitWidth="107.0" layoutX="40.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -109,5 +110,6 @@
             </VBox>
          </children>
       </Pane>
+      -->
    </children>
 </AnchorPane>
