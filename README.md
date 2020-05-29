@@ -2,9 +2,9 @@
 
 Uncertainty situations in smart homes are often the cause of the alarm system’s malfunctioning. 
 The process of acquiring knowledge on the nature and causes of these non deterministic anomalies is not trivial. 
-
 However, in a virtual environment, when said uncertain situations are correctly modeled, it is possible to observe the behaviour of a software system in response to those events in isolated and controlled conditions. 
 
+This software system possesses said characteristics and simulates a smart home and its functioning: some uncertainty situations typically found in reality, ranging from measurement errors to sensors malfunctioning, are carefully injected into this virtual environment, and the system’s behaviour is observed in response to such situations.
 
 
 # What is SafeHome 4 Uncertainty?
@@ -116,7 +116,7 @@ OPTIONAL: If you want the system to call you when the alarm is triggered, you ca
 - Once you've done this, you should see the system's "remote" dashboard, with text fields that will contain sensor's data, a switch to arm and disarm the house alarm. 
 
 
-How to run the system:
+<b>How to run the system:</b>
 
 - Open both Environment and Sensors project folders with your favourite Java IDE. The system has been developed using Visual Studio Code (which is a text editor, not an actual IDE).
 - Navigate to the GUI_Main.java file. You can find it inside \environment\src\main\java\safehome_se\gui\ folder, and sensor's equivalent for the other application.
@@ -144,18 +144,23 @@ You can test the three provided uncertainty situations by clicking "Test Scenari
 # FAQs
 
 -   <b>Q: Can i edit the smart home configuration?</b>
+    
     A: Yes. You can both add more rooms and devices with sensors, or edit existing ones. This can be done by adding (or editing existing) files in both the apps' /local folders. This files are checked in the initialization process by the main, so changes need to be performed before running the apps. Such files follow a small DSL-like pattern, as parameters and values need to be specified with precise textual syntax. Please refer to the provided files for a guide on how to edit the systems' configuration. 
 
 -   <b>Q: If i add a device / room by changing files, do i need to update openHAB conf?</b>
+    
     A: Only if you want to access the openHAB remote instance (the apps are standalones and work independently from it). However, if you added or edited a room, you would need to create a new Group item in both .items and .sitemap openHAB files; if you added or edited a device, or a sensor, you would need to install a new Thing by using openHAB's Paper UI (or by editing textual .things files, that's equivalent). OpenHAB docs cover these passages in detail (https://www.openhab.org/docs). 
 
 -   <b>Q: Can i edit the undesidered situations threshold values?</b>
+    
     A: Yes. They are specified inside the .rules file in the /conf/rules folder. Current values are taken from various health organizations.
 
 -   <b>Q: Is there an .exe file? </b>
+    
     A: Not yet. The system is still in its beta version. You can run the applications by executing the GUI_Main.java files
 
 -   <b>Q: Can i add another environmental execution scenario, or edit the existing standard one?</b>
+    
     A: It depends on what you want to do. Theoretically you could create a new execution scenario using the Environment UI, by simply manually varying the data you wish to vary, when you need to. The provided standard execution context is specified in the java file GUI_ScenarioSceneController (located in the /gui folder in the Environment app), and it is hard coded as a list of scheduled threads who will each perform a variation request (by raising a VARIATE_DATA_REQUEST event). You could edit this class or create a new one with the same structure to create a new execution context. 
 
 
